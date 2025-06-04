@@ -6,8 +6,9 @@ const router = Router()
 router.get('/', (req, res) => {
   res.send(
     html('./pages/index', {
-      pid: process.pid,
       title: 'Versatil',
+      lang: 'en',
+      pid: process.pid,
       href: '/outra',
     }),
   )
