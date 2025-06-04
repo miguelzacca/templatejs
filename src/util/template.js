@@ -1,11 +1,21 @@
 import fs from 'node:fs'
 
-export function html(file, data) {
-  function getFilePath(path) {
-    return path.endsWith('.html') ? path : path.concat('.html')
-  }
+const cache = new Map()
 
-  let htmlRaw = fs.readFileSync(getFilePath(file)).toString()
+function getFilePath(path) {
+  return path.endsWith('.html') ? path : path.concat('.html')
+}
+
+function getFileCached(path) {
+  const resolved = getFilePath(path)
+  if (!cache.has(resolved)) {
+    cache.set(resolved, fs.readFileSync(resolved).toString())
+  }
+  return cache.get(resolved)
+}
+
+export function html(file, data) {
+  let htmlRaw = getFileCached(file)
 
   const startInclude = '$${'
   const endsInclude = '}'
