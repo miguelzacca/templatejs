@@ -14,7 +14,7 @@ app.use(frontendRoutes)
 app.use('/api', apiRoutes)
 
 app.use((req, res) => {
-  res.send(html('./pages/404', { title: 'Not Fount' }))
+  res.send(html('./pages/404', { title: 'Not Fount', lang: 'en' }))
 })
 
 app.listen(5500, () => {

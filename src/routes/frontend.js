@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
   res.send(
     html('./pages/index', {
       title: 'Versatil',
-      lang: 'en',
+      lang: 'pt-br',
       pid: process.pid,
       href: '/outra',
     }),
